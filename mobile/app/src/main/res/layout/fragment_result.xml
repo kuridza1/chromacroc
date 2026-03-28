@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#E0E0E0">
+
+    <ImageView
+        android:id="@+id/capturedImage"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded_image_bg"
+        android:clipToOutline="true"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnWhatColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What color is this?"
+        android:textColor="#000000"
+        android:backgroundTint="#FFFFFF"
+        android:drawableStart="@drawable/ic_logo_croc"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="2dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <EditText
+        android:id="@+id/etAskAnything"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ask anything"
+        android:background="@drawable/rounded_edittext_bg"
+        android:padding="14dp"
+        android:textSize="16sp"/>
+
+</LinearLayout>
