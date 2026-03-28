@@ -101,9 +101,14 @@ public class CameraFragment extends Fragment {
                 new ImageCapture.OnImageSavedCallback() {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
-                        Toast.makeText(getContext(), "Saved: " + photoFile.getAbsolutePath(),
-                                Toast.LENGTH_SHORT).show();
-
+                        requireActivity().runOnUiThread(() -> {
+                            ResultFragment resultFragment = ResultFragment.newInstance(photoFile.getAbsolutePath());
+                            requireActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.nav_host_fragment, resultFragment) // ← tvoj stvarni container ID
+                                    .addToBackStack(null)
+                                    .commit();
+                        });
                     }
 
                     @Override
