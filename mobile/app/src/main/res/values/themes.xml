@@ -5,5 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.ChromaCroc" parent="Base.Theme.ChromaCroc" />
+    <style name="Theme.ChromaCroc" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
 </resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.chromacroc.ui.onboarding.WelcomeFragment"
+        android:label="WelcomeFragment">
+
+        <action
+            android:id="@+id/action_welcomeFragment_to_diagnosisChoiceFragment"
+            app:destination="@id/diagnosisChoiceFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/diagnosisChoiceFragment"
+        android:name="com.example.chromacroc.ui.onboarding.DiagnosisChoiceFragment"
+        android:label="DiagnosisChoiceFragment">
+
+        <action
+            android:id="@+id/action_diagnosisChoiceFragment_to_diagnosisSelectFragment"
+            app:destination="@id/diagnosisSelectFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/diagnosisSelectFragment"
+        android:name="com.example.chromacroc.ui.onboarding.DiagnosisSelectFragment"
+        android:label="DiagnosisSelectFragment">
+
+        <action
+            android:id="@+id/action_diagnosisSelectFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.chromacroc.ui.camera.CameraFragment"
+        android:label="CameraFragment"/>
+</navigation>
