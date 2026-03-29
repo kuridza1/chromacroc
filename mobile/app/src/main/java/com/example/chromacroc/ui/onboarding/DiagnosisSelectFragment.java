@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.chromacroc.R;
+import com.example.chromacroc.services.UserPreferences;
+import com.example.chromacroc.model.ColorBlindnessType;
 
 public class DiagnosisSelectFragment extends Fragment {
 
@@ -27,20 +29,32 @@ public class DiagnosisSelectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diagnosis_select, container, false);
+        UserPreferences prefs = new UserPreferences(requireContext());
 
         // Back
         view.findViewById(R.id.btn_back).setOnClickListener(v ->
                 Navigation.findNavController(v).navigateUp()
         );
 
-        // Svi tipovi vode na CameraFragment
-        View.OnClickListener toCameraListener = v ->
-                Navigation.findNavController(v).navigate(R.id.action_diagnosisSelectFragment_to_cameraFragment);
+        view.findViewById(R.id.btn_red_type).setOnClickListener(v -> {
+            prefs.saveColorBlindnessType(ColorBlindnessType.PROTANOPIA);
+            Navigation.findNavController(v).navigate(R.id.action_diagnosisSelectFragment_to_cameraFragment);
+        });
 
-        view.findViewById(R.id.btn_green_type).setOnClickListener(toCameraListener);
-        view.findViewById(R.id.btn_red_type).setOnClickListener(toCameraListener);
-        view.findViewById(R.id.btn_blue_type).setOnClickListener(toCameraListener);
-        view.findViewById(R.id.btn_total).setOnClickListener(toCameraListener);
+        view.findViewById(R.id.btn_green_type).setOnClickListener(v -> {
+            prefs.saveColorBlindnessType(ColorBlindnessType.DEUTERANOPIA);
+            Navigation.findNavController(v).navigate(R.id.action_diagnosisSelectFragment_to_cameraFragment);
+        });
+
+        view.findViewById(R.id.btn_blue_type).setOnClickListener(v -> {
+            prefs.saveColorBlindnessType(ColorBlindnessType.TRITANOPIA);
+            Navigation.findNavController(v).navigate(R.id.action_diagnosisSelectFragment_to_cameraFragment);
+        });
+
+        view.findViewById(R.id.btn_total).setOnClickListener(v -> {
+            prefs.saveColorBlindnessType(ColorBlindnessType.ACHROMATOPSIA);
+            Navigation.findNavController(v).navigate(R.id.action_diagnosisSelectFragment_to_cameraFragment);
+        });
 
         return view;
     }
