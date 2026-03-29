@@ -14,10 +14,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 import android.Manifest;
 import com.example.chromacroc.R;
@@ -39,7 +39,7 @@ public class CameraFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_camera, container, false);
 
         previewView = view.findViewById(R.id.previewView);
-        Button btnCapture = view.findViewById(R.id.btnCapture);
+        ImageButton btnCapture = view.findViewById(R.id.btnCapture);
 
         cameraExecutor = Executors.newSingleThreadExecutor();
 
@@ -50,8 +50,20 @@ public class CameraFragment extends Fragment {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
         }
 
-        btnCapture.setOnClickListener(v -> takePhoto());
-
+        btnCapture.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    v.animate().scaleX(0.88f).scaleY(0.88f).setDuration(100).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(100).withEndAction(this::takePhoto).start();
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(100).start();
+                    break;
+            }
+            return true;
+        });
         return view;
     }
 
@@ -102,10 +114,10 @@ public class CameraFragment extends Fragment {
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults output) {
                         requireActivity().runOnUiThread(() -> {
-                            ResultFragment resultFragment = ResultFragment.newInstance(photoFile.getAbsolutePath());
+                            PromptFragment promptFragment = PromptFragment.newInstance(photoFile.getAbsolutePath());
                             requireActivity().getSupportFragmentManager()
                                     .beginTransaction()
-                                    .replace(R.id.nav_host_fragment, resultFragment) // ← tvoj stvarni container ID
+                                    .replace(R.id.nav_host_fragment, promptFragment) // ← tvoj stvarni container ID
                                     .addToBackStack(null)
                                     .commit();
                         });
