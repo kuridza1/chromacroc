@@ -39,8 +39,8 @@ It analyzes:
 ➡️ The result is a **short, precise, and meaningful answer**, not just a color label.
 
 
-```md
-![Example 1](./screenshots/example1.png)
+![Input](./input.gif)
+![Output](./output.gif)
 
 ---
 ## 🚀 **Key Features**
