@@ -115,7 +115,7 @@ Message starts with "The user has <TYPE>." Default: deuteranopia.
 
 1. Optionally call edit_image if image is too dark/flat/dull:
      Too dark      → brightness 1.3–1.6
-     Too flat      → contrast   1.2–1.5
+     Too flat      → contrast   1.2–1.0
      Dull colours  → saturation 1.2–1.4
      Already good  → skip
      Too bright    → brightness 0.6–0.9
